@@ -1,61 +1,42 @@
 package classroom.day4.linkedList;
 
-class Node {
-    int data;
-    Node next;
+import java.util.LinkedList;
 
-    Node(int data) {
-        this.data = data;
-        this.next = null;
-    }
-}
 public class SinglyLinkedList {
     Node head;
-
-    public void addNodeToEnd(int data) {
-        Node newNode = new Node(data);
-        if (head == null) {
-            head = newNode;
-        } else {
-            Node current = head;
-            while (current.next != null) {
-                current = current.next;
+    void addNode(int x){
+        if(head==null){
+            head=new Node(x);
+        }
+        else{
+            Node temp=head;
+            while(temp.next!=null){
+                temp=temp.next;
             }
-            current.next = newNode;
+            temp.next=new Node(x);
         }
     }
-
-    public void deleteNodeFromBeginning() {
-        if (head != null) {
-            head = head.next;
-        } else {
-            System.out.println("List is empty.");
+    void delete(){
+        if(head==null){
+            return;
+        }
+        head=head.next;
+    }
+    void display(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.println(temp.data);
+            temp=temp.next;
         }
     }
-
-    public void displayAllNodes() {
-        if (head == null) {
-            System.out.println("List is empty.");
-        } else {
-            Node current = head;
-            while (current != null) {
-                System.out.print(current.data + " ");
-                current = current.next;
-            }
-            System.out.println();
-        }
-    }
-
     public static void main(String[] args) {
-        SinglyLinkedList list = new SinglyLinkedList();
-        list.addNodeToEnd(1);
-        list.addNodeToEnd(2);
-        list.addNodeToEnd(3);
-        System.out.println("List after adding nodes:");
-        list.displayAllNodes();
-
-        list.deleteNodeFromBeginning();
-        System.out.println("List after deleting node from beginning:");
-        list.displayAllNodes();
+        SinglyLinkedList list=new SinglyLinkedList();
+        list.addNode(1);
+        list.addNode(2);
+        list.addNode(3);
+        list.addNode(4);
+        list.addNode(5);
+        list.delete();
+        list.display();
     }
 }
